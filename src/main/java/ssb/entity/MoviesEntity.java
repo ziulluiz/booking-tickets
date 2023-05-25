@@ -12,6 +12,7 @@ public class MoviesEntity extends PanacheEntityBase {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id")
     long movie_id;
     @Column(name = "name")
@@ -51,5 +52,14 @@ public class MoviesEntity extends PanacheEntityBase {
     }
     public MoviesEntity() {
         super();
+    }
+
+    @Override
+    public String toString() {
+        return "MoviesEntity{" +
+                "movie_id=" + movie_id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
