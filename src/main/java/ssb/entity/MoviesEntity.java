@@ -2,20 +2,18 @@ package ssb.entity;
 
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
 @Table(name = "movies",schema = "public")
 @Entity
-public class MoviesEntity extends PanacheEntity {
+public class MoviesEntity extends PanacheEntityBase {
 
-    public MoviesEntity() {
-    super();
-    }
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+
+    @Id
+    @Column(name = "movie_id")
     long movie_id;
-
     @Column(name = "name")
     String name;
     @Column(name = "description")
@@ -51,5 +49,7 @@ public class MoviesEntity extends PanacheEntity {
         this.name = name;
         this.description = description;
     }
-
+    public MoviesEntity() {
+        super();
+    }
 }

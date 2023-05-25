@@ -2,17 +2,21 @@ package ssb.entity;
 
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Table(name = "users",schema = "public")
 @Entity
-public class UsersEntity extends PanacheEntity {
+public class UsersEntity extends PanacheEntityBase {
 
     public UsersEntity() {
         super();
     }
+
+    @Id
     @Column(name = "user_id")
     long user_id;
 

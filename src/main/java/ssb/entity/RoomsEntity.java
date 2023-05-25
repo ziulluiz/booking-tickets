@@ -2,6 +2,7 @@ package ssb.entity;
 
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
@@ -10,12 +11,13 @@ import java.util.Date;
 
 @Table(name = "rooms",schema = "public")
 @Entity
-public class RoomsEntity extends PanacheEntity {
+public class RoomsEntity extends PanacheEntityBase {
 
     public RoomsEntity() {
         super();
     }
 
+    @Id
     @Column(name = "id")
     Long id;
 
