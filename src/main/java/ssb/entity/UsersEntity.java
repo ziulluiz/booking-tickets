@@ -8,9 +8,9 @@ import jakarta.persistence.Table;
 
 @Table(name = "users",schema = "public")
 @Entity
-public class Users extends PanacheEntity {
+public class UsersEntity extends PanacheEntity {
 
-    public Users() {
+    public UsersEntity() {
         super();
     }
     @Column(name = "user_id")
@@ -35,7 +35,7 @@ public class Users extends PanacheEntity {
         this.user_name = user_name;
     }
 
-    public Users(long user_id, String user_name) {
+    public UsersEntity(long user_id, String user_name) {
         super();
         this.user_id = user_id;
         this.user_name = user_name;
