@@ -1,12 +1,11 @@
 package ssb.entity;
 
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 
 @Table(name = "rooms",schema = "public")
@@ -30,7 +29,7 @@ public class RoomsEntity extends PanacheEntityBase {
     int room_number;
 
     @Column(name = "date")
-    Date date;
+    LocalDate date;
 
     @Column(name = "time")
     LocalTime time;
@@ -41,8 +40,13 @@ public class RoomsEntity extends PanacheEntityBase {
     @Column(name = "avaliable")
     boolean avaliable;
 
-    @Column(name = "user_id")
+
+
+    @Column(name ="user_id" ,insertable=false, updatable=false)
     long user_id;
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UsersEntity usersEntity;
 
     public Long getId() {
         return id;
@@ -68,11 +72,11 @@ public class RoomsEntity extends PanacheEntityBase {
         this.room_number = room_number;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -107,8 +111,7 @@ public class RoomsEntity extends PanacheEntityBase {
     public void setUser_id(long user_id) {
         this.user_id = user_id;
     }
-
-    public RoomsEntity(Long id, Long movie_id, int room_number, Date date, LocalTime time, int seat, boolean avaliable, long user_id) {
+    public RoomsEntity(Long id, Long movie_id, int room_number, LocalDate date, LocalTime time, int seat, boolean avaliable, long user_id, UsersEntity usersEntity) {
         super();
         this.id = id;
         this.movie_id = movie_id;
@@ -118,6 +121,7 @@ public class RoomsEntity extends PanacheEntityBase {
         this.seat = seat;
         this.avaliable = avaliable;
         this.user_id = user_id;
+        this.usersEntity=usersEntity;
     }
 
 }

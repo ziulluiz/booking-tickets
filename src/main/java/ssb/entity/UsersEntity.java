@@ -5,6 +5,8 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Table(name = "users",schema = "public")
 @Entity
 public class UsersEntity extends PanacheEntityBase {
@@ -17,6 +19,8 @@ public class UsersEntity extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     long user_id;
+    @OneToMany(mappedBy = "usersEntity", orphanRemoval = true)
+    private Set<RoomsEntity> roomsEntities;
 
     @Column(name = "user_name")
     String user_name;
